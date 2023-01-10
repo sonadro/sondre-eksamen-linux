@@ -69,7 +69,6 @@ const dataArrays = [dataEier, dataFlokk, dataReinsdyr, dataBeiteområde];
 
 // search field
 searchField.addEventListener('input', () => {
-    console.log('------------------------------ NEW SEARCH -------------------------------------');
     // fetch input
     const searchInput = searchField.value.trim().toLowerCase();
 
@@ -82,7 +81,7 @@ searchField.addEventListener('input', () => {
             let allProps = '';
             for (const key in obj) { // hvert property navn som variabelen key
                 if (key === 'id') {
-                    console.log('Ignore id for search');
+                    // ignorerer id for søk
                 } else {
                     allProps += obj[key]; // legg til verdien av hvert property til allProps
                 }
@@ -90,7 +89,6 @@ searchField.addEventListener('input', () => {
 
             if (allProps.toLowerCase().includes(searchInput)) { // sjekk om allProps matcher med søkefeltet
                 displayResult(obj);
-                console.log(searchInput, obj);
             }
         });
     });
