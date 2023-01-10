@@ -1,0 +1,12 @@
+[
+    {"Navn": "Elen Nilsdatter", "Personnummer": "11028907557", "Kontaktspråk": "Lulesamisk", "Telefonnummer": "97654321", "Collection": "eier"},
+    {"Navn": "Mikkel Aslaksen", "Personnummer": "29030115858", "Kontaktspråk": "Nordsamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Lars Ingridson", "Personnummer": "15048804747", "Kontaktspråk": "Sørsamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Nilsen Mari", "Personnummer": "05059602636", "Kontaktspråk": "Nordsamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Pettersen Sigbjørn", "Personnummer": "28037101615", "Kontaktspråk": "Lulesamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Persen Astrid", "Personnummer": "17058301505", "Kontaktspråk": "Sørsamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Johansen Magnus", "Personnummer": "02047510404", "Kontaktspråk": "Nordsamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Olsson Johan", "Personnummer": "01036410313", "Kontaktspråk": "Lulesamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Kristiansen Karin", "Personnummer": "25036803524", "Kontaktspråk": "Nordsamisk", "Telefonnummer": "98765432", "Collection": "eier"},
+    {"Navn": "Elen Larsen", "Personnummer": "07026102403", "Kontaktspråk": "Sørsamisk", "Telefonnummer": "98765432", "Collection": "eier"}
+]
