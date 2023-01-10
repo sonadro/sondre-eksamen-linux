@@ -9,10 +9,10 @@ const displayResult = function(obj) {
     if (obj.Collection === 'eier') {
         let html = `
         <div id="${obj.id}">
-            <h3>${obj.Navn} - ${obj.Collection}</h3>
-            <p>${obj.Kontaktspråk}</p>
-            <p>${obj.Telefonnummer}</p>
-            <p>${obj.Personnummer}</p>
+            <h3>Navn: ${obj.Navn} - ${obj.Collection}</h3>
+            <p><b>Kontaktspråk:</b> ${obj.Kontaktspråk}</p>
+            <p><b>Tlf:</b> ${obj.Telefonnummer}</p>
+            <p><b>Personnummer:</b> ${obj.Personnummer}</p>
         </div>
         `;
 
@@ -20,10 +20,10 @@ const displayResult = function(obj) {
     } else if (obj.Collection === 'flokk') {
         let html = `
         <div id="${obj.id}">
-            <h3>${obj.Flokknavn} - ${obj.Collection}</h3>
-            <p>${obj.Eier}</p>
-            <p>${obj.Serieinndeling}</p>
-            <p>${obj.Buemerke}</p>
+            <h3>Flokknavn: ${obj.Flokknavn} - ${obj.Collection}</h3>
+            <p><b>Eier:</b> ${obj.Eier}</p>
+            <p><b>Serieinndeling:</b> ${obj.Serieinndeling}</p>
+            <p><b>Buemerke:</b> ${obj.Buemerke}</p>
         </div>
         `;
 
@@ -31,10 +31,10 @@ const displayResult = function(obj) {
     } else if (obj.Collection === 'reinsdyr') {
         let html = `
         <div id="${obj.id}">
-            <h3>${obj.Navn} - ${obj.Collection}</h3>
-            <p>${obj.Fødselsdato}</p>
-            <p>${obj.Flokk_tilhørighet}</p>
-            <p>${obj.Serienummer}</p>
+            <h3>Navn: ${obj.Navn} - ${obj.Collection}</h3>
+            <p><b>Fødselsdato:</b> ${obj.Fødselsdato}</p>
+            <p><b>Tilhørighet:</b> ${obj.Flokk_tilhørighet}</p>
+            <p><b>Serienummer:</b>${obj.Serienummer}</p>
         </div>
         `;
 
@@ -50,49 +50,50 @@ const displayObjs = function(objs) {
 }
 
 const searchProperties = function(rawInput, array) {
-    let newArr = array.slice(0); // function should be non-destructive
-    const inputs = rawInput.trim().toLowerCase().split(' ');
+    if (rawInput.trim().length === 0) {
+        displayObjs(array);
+    } else {
+        let newArr = array.slice(0); // function should be non-destructive
+        const inputs = rawInput.trim().toLowerCase().split(' ');
 
-    newArr.forEach(obj => {
-        obj.Relevance = 0;
-        let allProps = '';
-        for (prop in obj) {
-            if (prop !== 'id') {
-                allProps += obj[prop];
+        newArr.forEach(obj => {
+            obj.Relevance = 0;
+            let allProps = '';
+            for (prop in obj) {
+                if (prop !== 'id') {
+                    allProps += obj[prop];
+                }
             }
-        }
 
-        inputs.forEach(input => {
-            if (allProps.toLowerCase().includes(input)) {
-                obj.Relevance += input.length;
+            inputs.forEach(input => {
+                if (allProps.toLowerCase().includes(input)) {
+                    obj.Relevance += input.length;
+                }
+            });
+        });
+
+        newArr.sort((a, b) => b.Relevance - a.Relevance);
+        let lastLoop = false;
+        let i = 0;
+        newArr.forEach(obj => {
+            if (lastLoop) {
+                return;
+            } else {
+                if (obj.Relevance === 0) {
+                    newArr.length = i;
+                }
+                i++;
             }
         });
-    });
 
-    newArr.sort((a, b) => b.Relevance - a.Relevance);
-    let lastLoop = false;
-    let i = 0;
-    newArr.forEach(obj => {
-        if (lastLoop) {
-            return;
-        } else {
-            if (obj.Relevance === 0) {
-                newArr.length = i;
-            }
-            i++;
-        }
-    });
-
-    displayObjs(newArr);
+        displayObjs(newArr);
+    }
 }
 
 // RUN -------------------------------------------------------------------------------------
 
 // fetch data
 let dataArr = [];
-// fetch('eiere', dataArr);
-// fetch('flokk', dataArr);
-// fetch('reinsdyr', dataArr);
 db.collection('eier').get().then(snapshot => {
     snapshot.docs.forEach(doc => {
         const data = doc.data();
@@ -111,6 +112,8 @@ db.collection('eier').get().then(snapshot => {
                 data.id = doc.id;
                 dataArr.push(data);
             });
+            // display before search
+            displayObjs(dataArr);
         });
     });
 });

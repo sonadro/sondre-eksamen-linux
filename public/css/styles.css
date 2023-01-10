@@ -144,3 +144,22 @@ footer{
 }
 
 /* displayeditems */
+#results div {
+  margin: 16px;
+  padding: 12px;
+  background-color: #ddd;
+  width: 400px;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+}
+
+#results div h3 {
+  cursor: pointer;
+}
+
+#results div:hover {
+  scale: 1.1;
+  box-shadow: 5px 10px 18px #444;
+  transition: all 0.2s ease-in-out;
+}
