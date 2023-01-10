@@ -13,10 +13,10 @@ const getFile = async (resource) => {
     return data;
 }
 
-getFile('/uploadFlokk.json')
+getFile('/uploadBeite.json')
     .then(objects => {
         objects.forEach(obj => {
-            db.collection('flokk').add(obj).then(() => {
+            db.collection('beiteområde').add(obj).then(() => {
                 console.log('object added', obj);
             })
         });

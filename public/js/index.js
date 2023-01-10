@@ -9,7 +9,7 @@ const displayResult = function(obj) {
     if (obj.Collection === 'eier') {
         let html = `
         <div id="${obj.id}">
-            <h3>Navn: ${obj.Navn} - ${obj.Collection}</h3>
+            <h3>Navn: ${obj.Navn}</h3>
             <p><b>Kontaktspråk:</b> ${obj.Kontaktspråk}</p>
             <p><b>Tlf:</b> ${obj.Telefonnummer}</p>
             <p><b>Personnummer:</b> ${obj.Personnummer}</p>
@@ -20,7 +20,7 @@ const displayResult = function(obj) {
     } else if (obj.Collection === 'flokk') {
         let html = `
         <div id="${obj.id}">
-            <h3>Flokknavn: ${obj.Flokknavn} - ${obj.Collection}</h3>
+            <h3>Flokknavn: ${obj.Flokknavn}</h3>
             <p><b>Eier:</b> ${obj.Eier}</p>
             <p><b>Serieinndeling:</b> ${obj.Serieinndeling}</p>
             <p><b>Buemerke:</b> ${obj.Buemerke}</p>
@@ -31,10 +31,19 @@ const displayResult = function(obj) {
     } else if (obj.Collection === 'reinsdyr') {
         let html = `
         <div id="${obj.id}">
-            <h3>Navn: ${obj.Navn} - ${obj.Collection}</h3>
+            <h3>Navn: ${obj.Navn}</h3>
             <p><b>Fødselsdato:</b> ${obj.Fødselsdato}</p>
             <p><b>Tilhørighet:</b> ${obj.Flokk_tilhørighet}</p>
             <p><b>Serienummer:</b>${obj.Serienummer}</p>
+        </div>
+        `;
+
+        div.innerHTML += html;
+    } else if (obj.Collection === 'beiteområde') {
+        let html = `
+        <div id="${obj.id}">
+            <h3>Navn: ${obj.Navn}</h3>
+            <p><b>Fylke:</b> ${obj.Fylke}</p>
         </div>
         `;
 
@@ -112,8 +121,15 @@ db.collection('eier').get().then(snapshot => {
                 data.id = doc.id;
                 dataArr.push(data);
             });
-            // display before search
-            displayObjs(dataArr);
+            db.collection('beiteområde').get().then(snapshot => {
+                snapshot.docs.forEach(doc => {
+                    const data = doc.data();
+                    data.id = doc.id;
+                    dataArr.push(data);
+                });
+                // display before search
+                displayObjs(dataArr);
+            });
         });
     });
 });
