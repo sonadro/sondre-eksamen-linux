@@ -16,9 +16,8 @@ const fetchData = function(collection, arr) {
 };
 
 const displayResult = function(obj) {
-    let html;
-    if (obj.collection === 'eier') {
-        html = `
+    if (obj.Collection === 'eier') {
+        let html = `
         <div id="${obj.id}">
             <h3>${obj.Navn}</h3>
             <p>${obj.Kontaktspråk}</p>
@@ -26,17 +25,21 @@ const displayResult = function(obj) {
             <p>${obj.Personnummer}</p>
         </div>
         `;
-    } else if (obj.collection === 'flokk') {
-        html = `
+
+        div.innerHTML += html;
+    } else if (obj.Collection === 'flokk') {
+        let html = `
         <div id="${obj.id}">
-            <h3>${obj.Navn}</h3>
+            <h3>${obj.Flokknavn}</h3>
             <p>${obj.Eier}</p>
             <p>${obj.Serieinndeling}</p>
             <p>${obj.Buemerke}</p>
         </div>
         `;
-    } else if (obj.collection === 'reinsdyr') {
-        html = `
+
+        div.innerHTML += html;
+    } else if (obj.Collection === 'reinsdyr') {
+        let html = `
         <div id="${obj.id}">
             <h3>${obj.Navn}</h3>
             <p>${obj.Fødselsdato}</p>
@@ -44,8 +47,9 @@ const displayResult = function(obj) {
             <p>${obj.Serienummer}</p>
         </div>
         `;
+
+        div.innerHTML += html;
     }
-    div.innerHTML += html;
 }
 
 // RUN -------------------------------------------------------------------------------------
@@ -77,12 +81,16 @@ searchField.addEventListener('input', () => {
         section.forEach(obj => {
             let allProps = '';
             for (const key in obj) { // hvert property navn som variabelen key
-                allProps += obj[key]; // legg til verdien av hvert property til allProps
+                if (key === 'id') {
+                    console.log('Ignore id for search');
+                } else {
+                    allProps += obj[key]; // legg til verdien av hvert property til allProps
+                }
             }
 
             if (allProps.toLowerCase().includes(searchInput)) { // sjekk om allProps matcher med søkefeltet
                 displayResult(obj);
-                console.log(searchInput, allProps, obj);
+                console.log(searchInput, obj);
             }
         });
     });
