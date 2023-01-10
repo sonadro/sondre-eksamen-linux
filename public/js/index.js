@@ -5,21 +5,11 @@ const div = document.querySelector('#results');
 const searchField = document.querySelector('.search');
 
 // ALL FUNCTIONS --------------------------------------------------------
-const fetchData = function(collection, arr) {
-    db.collection(collection).get().then(snapshot => {
-        snapshot.docs.forEach(doc => {
-            const data = doc.data();
-            data.id = doc.id;
-            arr.push(data);
-        });
-    })
-};
-
 const displayResult = function(obj) {
     if (obj.Collection === 'eier') {
         let html = `
         <div id="${obj.id}">
-            <h3>${obj.Navn}</h3>
+            <h3>${obj.Navn} - ${obj.Collection}</h3>
             <p>${obj.Kontaktspråk}</p>
             <p>${obj.Telefonnummer}</p>
             <p>${obj.Personnummer}</p>
@@ -30,7 +20,7 @@ const displayResult = function(obj) {
     } else if (obj.Collection === 'flokk') {
         let html = `
         <div id="${obj.id}">
-            <h3>${obj.Flokknavn}</h3>
+            <h3>${obj.Flokknavn} - ${obj.Collection}</h3>
             <p>${obj.Eier}</p>
             <p>${obj.Serieinndeling}</p>
             <p>${obj.Buemerke}</p>
@@ -41,7 +31,7 @@ const displayResult = function(obj) {
     } else if (obj.Collection === 'reinsdyr') {
         let html = `
         <div id="${obj.id}">
-            <h3>${obj.Navn}</h3>
+            <h3>${obj.Navn} - ${obj.Collection}</h3>
             <p>${obj.Fødselsdato}</p>
             <p>${obj.Flokk_tilhørighet}</p>
             <p>${obj.Serienummer}</p>
@@ -52,44 +42,84 @@ const displayResult = function(obj) {
     }
 }
 
-// RUN -------------------------------------------------------------------------------------
+const displayObjs = function(objs) {
+    for (i = 0; i < objs.length; i++) {
+        const obj = objs[i];
+        displayResult(obj);
+    }
+}
 
-// storing data
-let dataEier = [];
-let dataFlokk = [];
-let dataReinsdyr = [];
-let dataBeiteområde = [];
+const searchProperties = function(rawInput, array) {
+    let newArr = array.slice(0); // function should be non-destructive
+    const inputs = rawInput.trim().toLowerCase().split(' ');
 
-// fetch data
-fetchData('eier', dataEier);
-fetchData('flokk', dataFlokk);
-fetchData('reinsdyr', dataReinsdyr);
-fetchData('beiteområde', dataBeiteområde);
-const dataArrays = [dataEier, dataFlokk, dataReinsdyr, dataBeiteområde];
-
-// search field
-searchField.addEventListener('input', () => {
-    // fetch input
-    const searchInput = searchField.value.trim().toLowerCase();
-
-    // clear tidligere elementer
-    div.innerHTML = '';
-
-    // hide nomatch items
-    dataArrays.forEach(section => {
-        section.forEach(obj => {
-            let allProps = '';
-            for (const key in obj) { // hvert property navn som variabelen key
-                if (key === 'id') {
-                    // ignorerer id for søk
-                } else {
-                    allProps += obj[key]; // legg til verdien av hvert property til allProps
-                }
+    newArr.forEach(obj => {
+        obj.Relevance = 0;
+        let allProps = '';
+        for (prop in obj) {
+            if (prop !== 'id') {
+                allProps += obj[prop];
             }
+        }
 
-            if (allProps.toLowerCase().includes(searchInput)) { // sjekk om allProps matcher med søkefeltet
-                displayResult(obj);
+        inputs.forEach(input => {
+            if (allProps.toLowerCase().includes(input)) {
+                obj.Relevance += input.length;
             }
         });
     });
+
+    newArr.sort((a, b) => b.Relevance - a.Relevance);
+    let lastLoop = false;
+    let i = 0;
+    newArr.forEach(obj => {
+        if (lastLoop) {
+            return;
+        } else {
+            if (obj.Relevance === 0) {
+                newArr.length = i;
+            }
+            i++;
+        }
+    });
+
+    displayObjs(newArr);
+}
+
+// RUN -------------------------------------------------------------------------------------
+
+// fetch data
+let dataArr = [];
+// fetch('eiere', dataArr);
+// fetch('flokk', dataArr);
+// fetch('reinsdyr', dataArr);
+db.collection('eier').get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+        const data = doc.data();
+        data.id = doc.id;
+        dataArr.push(data);
+    });
+    db.collection('flokk').get().then(snapshot => {
+        snapshot.docs.forEach(doc => {
+            const data = doc.data();
+            data.id = doc.id;
+            dataArr.push(data);
+        });
+        db.collection('reinsdyr').get().then(snapshot => {
+            snapshot.docs.forEach(doc => {
+                const data = doc.data();
+                data.id = doc.id;
+                dataArr.push(data);
+            });
+        });
+    });
+});
+
+// search field
+searchField.addEventListener('input', () => {
+    // clear tidligere elementer
+    div.innerHTML = '';
+
+    // search through array
+    searchProperties(searchField.value, dataArr);
 });
