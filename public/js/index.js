@@ -6,9 +6,10 @@ const searchField = document.querySelector('.search');
 
 // ALL FUNCTIONS --------------------------------------------------------
 const displayResult = function(obj) {
-    if (obj.Personnummer) { // 
+    console.log(obj);
+    if (obj.Personnummer) {
         let html = `
-        <div id="${obj.Personnummer}">
+        <div class="eier" id="${obj.Personnummer}">
             <h3>Navn: ${obj.Navn}</h3>
             <p><b>Kontaktspråk:</b> ${obj.Kontaktspråk}</p>
             <p><b>Tlf:</b> ${obj.Telefonnummer}</p>
@@ -19,7 +20,7 @@ const displayResult = function(obj) {
         div.innerHTML += html;
     } else if (obj.id.length === 6) {
         let html = `
-        <div id="${obj.id}">
+        <div class="flokk" id="${obj.id}">
             <h3>Flokknavn: ${obj.Flokknavn}</h3>
             <p><b>Eier:</b> ${obj.Eier}</p>
             <p><b>Serieinndeling:</b> ${obj.Serieinndeling}</p>
@@ -30,7 +31,7 @@ const displayResult = function(obj) {
         div.innerHTML += html;
     } else if (obj.id.length === 9) {
         let html = `
-        <div id="${obj.id}">
+        <div class="reinsdyr" id="${obj.id}">
             <h3>Navn: ${obj.Navn}</h3>
             <p><b>Fødselsdato:</b> ${obj.Fødselsdato}</p>
             <p><b>Tilhørighet:</b> ${obj.Flokk_tilhørighet}</p>
@@ -41,7 +42,7 @@ const displayResult = function(obj) {
         div.innerHTML += html;
     } else if (obj.id.length === 5) {
         let html = `
-        <div id="${obj.Navn}">
+        <div class="beiteområde" id="${obj.Navn}">
             <h3>Navn: ${obj.Navn}</h3>
             <p><b>Fylke:</b> ${obj.Fylke}</p>
         </div>
