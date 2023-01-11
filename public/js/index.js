@@ -6,7 +6,7 @@ const searchField = document.querySelector('.search');
 
 // ALL FUNCTIONS --------------------------------------------------------
 const displayResult = function(obj) {
-    if (obj.Personnummer) {
+    if (obj.Personnummer) { // 
         let html = `
         <div id="${obj.Personnummer}">
             <h3>Navn: ${obj.Navn}</h3>
