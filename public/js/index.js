@@ -6,7 +6,6 @@ const searchField = document.querySelector('.search');
 
 // ALL FUNCTIONS --------------------------------------------------------
 const displayResult = function(obj) {
-    console.log(obj);
     if (obj.Personnummer) {
         let html = `
         <div id="${obj.Personnummer}">
