@@ -1,12 +1,12 @@
 [
-    {"Navn": "Sárá", "Flokk_tilhørighet": "Gállok", "Fødselsdato": "10. april, 2010", "Serienummer": "G2-2010", "Collection": "reinsdyr"},
-    {"Navn": "Beaivi", "Flokk_tilhørighet": "Guovdageaidnu", "Fødselsdato": "15. januar, 2011", "Serienummer": "G5-2011", "Collection": "reinsdyr"},
-    {"Navn": "Iđit", "Flokk_tilhørighet": "Ráhpes", "Fødselsdato": "22. mai, 2012", "Serienummer": "R7-2012", "Collection": "reinsdyr"},
-    {"Navn": "Mihkkal", "Flokk_tilhørighet": "Suolu", "Fødselsdato": "18. august, 2013", "Serienummer": "S9-2013", "Collection": "reinsdyr"},
-    {"Navn": "Nieidda", "Flokk_tilhørighet": "Ávžžil", "Fødselsdato": "3. januar, 2014", "Serienummer": "A1-2014", "Collection": "reinsdyr"},
-    {"Navn": "Boazobargu", "Flokk_tilhørighet": "Álbmot", "Fødselsdato": "13. februar, 2015", "Serienummer": "A2-2015", "Collection": "reinsdyr"},
-    {"Navn": "Mearagáhtten", "Flokk_tilhørighet": "Meara", "Fødselsdato": "23. mars, 2016", "Serienummer": "M7-2016", "Collection": "reinsdyr"},
-    {"Navn": "Nieidat", "Flokk_tilhørighet": "Nieida", "Fødselsdato": "1. juli, 2017", "Serienummer": "N5-2017", "Collection": "reinsdyr"},
-    {"Navn": "Boazosuohkan", "Flokk_tilhørighet": "Boazu", "Fødselsdato": "12. september, 2018", "Serienummer": "B1-2018", "Collection": "reinsdyr"},
-    {"Navn": "Guovdageainnut", "Flokk_tilhørighet": "Guovdageainnu", "Fødselsdato": "18. november, 2019", "Serienummer": "G1-2019", "Collection": "reinsdyr"}
+    {"Navn": "Sárá", "Flokk_tilhørighet": "Gállok", "Fødselsdato": "10. april, 2010", "Serienummer": "G2-2010", "id": "100410784"},
+    {"Navn": "Beaivi", "Flokk_tilhørighet": "Guovdageaidnu", "Fødselsdato": "15. januar, 2011", "Serienummer": "G5-2011", "id": "150111829"},
+    {"Navn": "Iđit", "Flokk_tilhørighet": "Ráhpes", "Fødselsdato": "22. mai, 2012", "Serienummer": "R7-2012", "id": "220512103"},
+    {"Navn": "Mihkkal", "Flokk_tilhørighet": "Suolu", "Fødselsdato": "18. august, 2013", "Serienummer": "S9-2013", "id": "180813647"},
+    {"Navn": "Nieidda", "Flokk_tilhørighet": "Ávžžil", "Fødselsdato": "3. januar, 2014", "Serienummer": "A1-2014", "id": "30114946"},
+    {"Navn": "Boazobargu", "Flokk_tilhørighet": "Álbmot", "Fødselsdato": "13. februar, 2015", "Serienummer": "A2-2015", "id": "130215428"},
+    {"Navn": "Mearagáhtten", "Flokk_tilhørighet": "Meara", "Fødselsdato": "23. mars, 2016", "Serienummer": "M7-2016", "id": "230216828"},
+    {"Navn": "Nieidat", "Flokk_tilhørighet": "Nieida", "Fødselsdato": "1. juli, 2017", "Serienummer": "N5-2017", "id": "010717626"},
+    {"Navn": "Boazosuohkan", "Flokk_tilhørighet": "Boazu", "Fødselsdato": "12. september, 2018", "Serienummer": "B1-2018", "id": "120918921"},
+    {"Navn": "Guovdageainnut", "Flokk_tilhørighet": "Guovdageainnu", "Fødselsdato": "18. november, 2019", "Serienummer": "G1-2019", "id": "181119567"}
 ]
