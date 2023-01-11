@@ -89,11 +89,11 @@ const searchProperties = function(rawInput, array) {
             } else {
                 if (obj.Relevance < 1) {
                     newArr.length = i;
+                    lastLoop = true;
                 }
                 i++;
             }
         });
-
         displayObjs(newArr);
     }
 }
