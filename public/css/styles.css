@@ -224,17 +224,6 @@ footer{
   box-shadow: 1px 1px 5px rgba(68, 68, 68, 0.212);
 }
 
-#results div:nth-child(even) {
-  transform: rotate(1deg);
-}
-#results div:nth-child(odd) {
-  transform: rotate(-1deg);
-}
-#results div:nth-child(5n) {
-  transform: rotate(-2deg);
-}
-
-
 #results div h3 {
   cursor: pointer;
 }

@@ -122,8 +122,8 @@ db.collection('eier').get().then(snapshot => {
                     const data = doc.data();
                     dataArr.push(data);
                 });
-                // display before search
-                displayObjs(dataArr);
+                // search on refresh
+                searchProperties(searchField.value, dataArr);
             });
         });
     });
