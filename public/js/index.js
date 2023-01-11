@@ -2,11 +2,10 @@
 const db = firebase.firestore();
 
 const div = document.querySelector('#results');
-const searchField = document.querySelector('.search');
+const searchField = document.querySelector('.searchBox');
 
 // ALL FUNCTIONS --------------------------------------------------------
 const displayResult = function(obj) {
-    console.log(obj);
     if (obj.Personnummer) {
         let html = `
         <div class="eier" id="${obj.Personnummer}">
