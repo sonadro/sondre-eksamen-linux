@@ -1,12 +1,12 @@
 [
-    {"Collection": "beiteområde", "Navn": "Ter", "Fylke": "Troms og Finnmark"},
-    {"Collection": "beiteområde", "Navn": "Kildin", "Fylke": "Troms og Finnmark"},
-    {"Collection": "beiteområde", "Navn": "Akkala", "Fylke": "Troms og Finnmark"},
-    {"Collection": "beiteområde", "Navn": "Skolt", "Fylke": "Troms og Finnmark"},
-    {"Collection": "beiteområde", "Navn": "Enare", "Fylke": "Troms og Finnmark"},
-    {"Collection": "beiteområde", "Navn": "Nord", "Fylke": "Troms og Finnmark"},
-    {"Collection": "beiteområde", "Navn": "Lule", "Fylke": "Nordland"},
-    {"Collection": "beiteområde", "Navn": "Pite", "Fylke": "Nordland"},
-    {"Collection": "beiteområde", "Navn": "Ume", "Fylke": "Nordland"},
-    {"Collection": "beiteområde", "Navn": "Sør", "Fylke": "Trøndelag"}
+    {"Navn": "Ter", "Fylke": "Finland", "id": "74989"},
+    {"Navn": "Kildin", "Fylke": "Finland", "id": "92975"},
+    {"Navn": "Akkala", "Fylke": "Sverige", "id": "93284"},
+    {"Navn": "Skolt", "Fylke": "Sverige", "id": "28833"},
+    {"Navn": "Enare", "Fylke": "Troms og Finnmark", "id": "39283"},
+    {"Navn": "Nord", "Fylke": "Troms og Finnmark", "id": "29394"},
+    {"Navn": "Lule", "Fylke": "Nordland", "id": "28383"},
+    {"Navn": "Pite", "Fylke": "Nordland", "id": "38338"},
+    {"Navn": "Ume", "Fylke": "Nordland", "id": "38328"},
+    {"Navn": "Sør", "Fylke": "Trøndelag", "id": "23828"}
 ]
