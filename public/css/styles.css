@@ -266,3 +266,12 @@ justify-content: center;
   align-items: center;
   justify-items: center;
 }
+
+.diagramBox {
+  display: grid;
+  justify-items: center;
+}
+
+.diagramImg {
+  width: 70%;
+}
