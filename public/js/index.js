@@ -6,9 +6,10 @@ const searchField = document.querySelector('.search');
 
 // ALL FUNCTIONS --------------------------------------------------------
 const displayResult = function(obj) {
-    if (obj.Collection === 'eier') {
+    console.log(obj);
+    if (obj.Personnummer) {
         let html = `
-        <div id="${obj.id}">
+        <div class="eier" id="${obj.Personnummer}">
             <h3>Navn: ${obj.Navn}</h3>
             <p><b>Kontaktspråk:</b> ${obj.Kontaktspråk}</p>
             <p><b>Tlf:</b> ${obj.Telefonnummer}</p>
@@ -17,9 +18,9 @@ const displayResult = function(obj) {
         `;
 
         div.innerHTML += html;
-    } else if (obj.Collection === 'flokk') {
+    } else if (obj.id.length === 6) {
         let html = `
-        <div id="${obj.id}">
+        <div class="flokk" id="${obj.id}">
             <h3>Flokknavn: ${obj.Flokknavn}</h3>
             <p><b>Eier:</b> ${obj.Eier}</p>
             <p><b>Serieinndeling:</b> ${obj.Serieinndeling}</p>
@@ -28,20 +29,20 @@ const displayResult = function(obj) {
         `;
 
         div.innerHTML += html;
-    } else if (obj.Collection === 'reinsdyr') {
+    } else if (obj.id.length === 9) {
         let html = `
-        <div id="${obj.id}">
+        <div class="reinsdyr" id="${obj.id}">
             <h3>Navn: ${obj.Navn}</h3>
             <p><b>Fødselsdato:</b> ${obj.Fødselsdato}</p>
             <p><b>Tilhørighet:</b> ${obj.Flokk_tilhørighet}</p>
-            <p><b>Serienummer:</b>${obj.Serienummer}</p>
+            <p><b>Serienummer:</b> ${obj.Serienummer}</p>
         </div>
         `;
 
         div.innerHTML += html;
-    } else if (obj.Collection === 'beiteområde') {
+    } else if (obj.id.length === 5) {
         let html = `
-        <div id="${obj.id}">
+        <div class="beiteområde" id="${obj.Navn}">
             <h3>Navn: ${obj.Navn}</h3>
             <p><b>Fylke:</b> ${obj.Fylke}</p>
         </div>
@@ -52,10 +53,9 @@ const displayResult = function(obj) {
 }
 
 const displayObjs = function(objs) {
-    for (i = 0; i < objs.length; i++) {
-        const obj = objs[i];
+    objs.forEach(obj => {
         displayResult(obj);
-    }
+    });
 }
 
 const searchProperties = function(rawInput, array) {
@@ -88,7 +88,7 @@ const searchProperties = function(rawInput, array) {
             if (lastLoop) {
                 return;
             } else {
-                if (obj.Relevance === 0) {
+                if (obj.Relevance < 1) {
                     newArr.length = i;
                 }
                 i++;
@@ -106,25 +106,21 @@ let dataArr = [];
 db.collection('eier').get().then(snapshot => {
     snapshot.docs.forEach(doc => {
         const data = doc.data();
-        data.id = doc.id;
         dataArr.push(data);
     });
     db.collection('flokk').get().then(snapshot => {
         snapshot.docs.forEach(doc => {
             const data = doc.data();
-            data.id = doc.id;
             dataArr.push(data);
         });
         db.collection('reinsdyr').get().then(snapshot => {
             snapshot.docs.forEach(doc => {
                 const data = doc.data();
-                data.id = doc.id;
                 dataArr.push(data);
             });
             db.collection('beiteområde').get().then(snapshot => {
                 snapshot.docs.forEach(doc => {
                     const data = doc.data();
-                    data.id = doc.id;
                     dataArr.push(data);
                 });
                 // display before search
