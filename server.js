@@ -9,7 +9,7 @@ app.use(express.json());
 // view engine
 app.set('view engine', 'ejs');
 
-app.listen(3000);
+app.listen(80);
 console.log('Connected!');
 
 // page routes
